@@ -23,6 +23,9 @@ bun.lockb
 
 target/
 
+# 启动脚本运行时产物
+.dev-server.pid
+
 .cargo-tools/
 
 rust-migration-notes.md
