@@ -30,15 +30,21 @@ if ($existing) {
     exit 0
 }
 
-# 定位 bun 可执行文件（npm 全局装的 bun 通过 .cmd shim 指向真实 bun.exe，需解析真实路径）
+# 定位 bun 可执行文件
+# 优先级：~/.bun/bin（独立持久位置，不依赖 PATH）> PATH 中 bun.cmd shim 解析 > bun.exe
 $bunExe = $null
-$bunCmd = Get-Command bun.cmd -ErrorAction SilentlyContinue
-if ($bunCmd) {
-    $candidate = Join-Path (Split-Path -Parent $bunCmd.Source) "node_modules\bun\bin\bun.exe"
-    if (Test-Path $candidate) { $bunExe = $candidate }
-}
-if (-not $bunExe) {
-    $bunExe = (Get-Command bun.exe -ErrorAction SilentlyContinue).Source
+$localBun = Join-Path $HOME ".bun\bin\bun.exe"
+if (Test-Path $localBun) {
+    $bunExe = $localBun
+} else {
+    $bunCmd = Get-Command bun.cmd -ErrorAction SilentlyContinue
+    if ($bunCmd) {
+        $candidate = Join-Path (Split-Path -Parent $bunCmd.Source) "node_modules\bun\bin\bun.exe"
+        if (Test-Path $candidate) { $bunExe = $candidate }
+    }
+    if (-not $bunExe) {
+        $bunExe = (Get-Command bun.exe -ErrorAction SilentlyContinue).Source
+    }
 }
 if (-not $bunExe -or -not (Test-Path $bunExe)) {
     throw "未找到 bun 可执行文件，请先安装：npm install -g bun"
