@@ -20,6 +20,7 @@ import { syntaxUIGradients } from "@/data/colors/syntax-ui";
 import { useEditor } from "@/editor/use-editor";
 import { effectPreviewService } from "@/services/renderer/effect-preview";
 import { cn } from "@/utils/ui";
+import { useT } from "@/i18n";
 
 const BLUR_PREVIEW_UNIFORM_DIMENSIONS = {
 	width: 1920,
@@ -149,6 +150,7 @@ function CustomColorPreview({
 	onPreview: (color: string) => void;
 	onCommit: (color: string) => void;
 }) {
+	const t = useT();
 	return (
 		<Popover>
 			<PopoverTrigger asChild>
@@ -158,7 +160,7 @@ function CustomColorPreview({
 						isSelected && "border-primary border-2",
 					)}
 					type="button"
-					aria-label="Pick a custom background color"
+					aria-label={t("Pick a custom background color")}
 				>
 					<span
 						className="absolute inset-0"
@@ -187,6 +189,7 @@ const COLOR_SECTIONS = [
 
 export function BackgroundContent() {
 	const editor = useEditor();
+	const t = useT();
 	const activeProject = useEditor((e) => e.project.getActive());
 
 	const handleBlurSelect = useCallback(
@@ -263,7 +266,7 @@ export function BackgroundContent() {
 				showTopBorder={false}
 			>
 				<SectionHeader>
-					<SectionTitle>Blur</SectionTitle>
+					<SectionTitle>{t("Blur")}</SectionTitle>
 				</SectionHeader>
 				<SectionContent>
 					<div className="flex flex-wrap gap-2">{blurPreviews}</div>

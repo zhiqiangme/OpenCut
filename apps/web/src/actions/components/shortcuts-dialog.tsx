@@ -16,6 +16,7 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from "@/components/ui/dialog";
+import { useT } from "@/i18n";
 
 export function ShortcutsDialog({
 	isOpen,
@@ -26,6 +27,8 @@ export function ShortcutsDialog({
 }) {
 	const [recordingShortcut, setRecordingShortcut] =
 		useState<KeyboardShortcut | null>(null);
+
+	const t = useT();
 
 	const {
 		updateKeybinding,
@@ -57,7 +60,10 @@ export function ShortcutsDialog({
 				});
 				if (conflict) {
 					toast.error(
-						`Key "${keyString}" is already bound to "${conflict.existingAction}"`,
+						t('Key "{key}" is already bound to "{action}"', {
+							key: keyString,
+							action: conflict.existingAction,
+						}),
 					);
 					setRecordingShortcut(null);
 					return;
@@ -99,6 +105,7 @@ export function ShortcutsDialog({
 		getKeybindingsForAction,
 		setIsRecording,
 		isRecording,
+		t,
 	]);
 
 	const handleStartRecording = (shortcut: KeyboardShortcut) => {
@@ -110,7 +117,7 @@ export function ShortcutsDialog({
 		<Dialog open={isOpen} onOpenChange={onOpenChange}>
 			<DialogContent className="flex max-h-[80vh] max-w-2xl flex-col p-0">
 				<DialogHeader>
-					<DialogTitle>Keyboard shortcuts</DialogTitle>
+					<DialogTitle>{t("Keyboard shortcuts")}</DialogTitle>
 				</DialogHeader>
 
 				<DialogBody className="scrollbar-thin grow overflow-y-auto">
@@ -140,7 +147,7 @@ export function ShortcutsDialog({
 				</DialogBody>
 				<DialogFooter>
 					<Button variant="destructive" onClick={resetToDefaults}>
-						Reset to default
+						{t("Reset to default")}
 					</Button>
 				</DialogFooter>
 			</DialogContent>
@@ -157,6 +164,7 @@ function ShortcutItem({
 	isRecording: boolean;
 	onStartRecording: (params: { shortcut: KeyboardShortcut }) => void;
 }) {
+	const t = useT();
 	const displayKeys = shortcut.keys.filter((key: string) => {
 		if (
 			key.includes("Cmd") &&
@@ -193,7 +201,7 @@ function ShortcutItem({
 							})}
 						</div>
 						{index < displayKeys.length - 1 && (
-							<span className="text-muted-foreground text-xs">or</span>
+							<span className="text-muted-foreground text-xs">{t("or")}</span>
 						)}
 					</div>
 				))}
@@ -211,6 +219,7 @@ function EditableShortcutKey({
 	isRecording: boolean;
 	onStartRecording: () => void;
 }) {
+	const t = useT();
 	const handleClick = (e: React.MouseEvent) => {
 		e.preventDefault();
 		e.stopPropagation();
@@ -223,7 +232,9 @@ function EditableShortcutKey({
 			size="sm"
 			onClick={handleClick}
 			title={
-				isRecording ? "Press any key combination..." : "Click to edit shortcut"
+				isRecording
+					? t("Press any key combination...")
+					: t("Click to edit shortcut")
 			}
 		>
 			{children}

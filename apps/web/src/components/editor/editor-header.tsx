@@ -8,6 +8,11 @@ import {
 	DropdownMenuItem,
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
+	DropdownMenuSub,
+	DropdownMenuSubTrigger,
+	DropdownMenuSubContent,
+	DropdownMenuRadioGroup,
+	DropdownMenuRadioItem,
 } from "../ui/dropdown-menu";
 import Link from "next/link";
 import { RenameProjectDialog } from "@/project/components/rename-project-dialog";
@@ -26,6 +31,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { ShortcutsDialog } from "@/actions/components/shortcuts-dialog";
 import Image from "next/image";
 import { cn } from "@/utils/ui";
+import { useT, useLanguageStore, type Language } from "@/i18n";
 
 export function EditorHeader() {
 	return (
@@ -51,6 +57,9 @@ function ProjectDropdown() {
 	const router = useRouter();
 	const editor = useEditor();
 	const activeProject = useEditor((e) => e.project.getActive());
+	const t = useT();
+	const language = useLanguageStore((s) => s.language);
+	const setLanguage = useLanguageStore((s) => s.setLanguage);
 
 	const handleExit = async () => {
 		if (isExiting) return;
@@ -79,9 +88,9 @@ function ProjectDropdown() {
 					name: newName.trim(),
 				});
 			} catch (error) {
-				toast.error("Failed to rename project", {
+				toast.error(t("Failed to rename project"), {
 					description:
-						error instanceof Error ? error.message : "Please try again",
+						error instanceof Error ? error.message : t("Please try again"),
 				});
 			} finally {
 				setOpenDialog(null);
@@ -97,9 +106,9 @@ function ProjectDropdown() {
 				});
 				router.push("/projects");
 			} catch (error) {
-				toast.error("Failed to delete project", {
+				toast.error(t("Failed to delete project"), {
 					description:
-						error instanceof Error ? error.message : "Please try again",
+						error instanceof Error ? error.message : t("Please try again"),
 				});
 			} finally {
 				setOpenDialog(null);
@@ -114,7 +123,7 @@ function ProjectDropdown() {
 					<Button variant="ghost" size="icon" className="p-1 rounded-sm size-8">
 						<Image
 							src={DEFAULT_LOGO_URL}
-							alt="Project thumbnail"
+							alt={t("Project thumbnail")}
 							width={32}
 							height={32}
 							className="invert dark:invert-0 size-5"
@@ -127,14 +136,14 @@ function ProjectDropdown() {
 						disabled={isExiting}
 						icon={<HugeiconsIcon icon={Logout05Icon} />}
 					>
-						Exit project
+						{t("Exit project")}
 					</DropdownMenuItem>
 
 					<DropdownMenuItem
 						onClick={() => setOpenDialog("shortcuts")}
 						icon={<HugeiconsIcon icon={CommandIcon} />}
 					>
-						Shortcuts
+						{t("Shortcuts")}
 					</DropdownMenuItem>
 
 					<DropdownMenuSeparator />
@@ -148,6 +157,21 @@ function ProjectDropdown() {
 							Discord
 						</Link>
 					</DropdownMenuItem>
+
+					<DropdownMenuSeparator />
+
+					<DropdownMenuSub>
+						<DropdownMenuSubTrigger>{t("Language")}</DropdownMenuSubTrigger>
+						<DropdownMenuSubContent>
+							<DropdownMenuRadioGroup
+								value={language}
+								onValueChange={(value) => setLanguage(value as Language)}
+							>
+								<DropdownMenuRadioItem value="zh">中文</DropdownMenuRadioItem>
+								<DropdownMenuRadioItem value="en">English</DropdownMenuRadioItem>
+							</DropdownMenuRadioGroup>
+						</DropdownMenuSubContent>
+					</DropdownMenuSub>
 				</DropdownMenuContent>
 			</DropdownMenu>
 			<RenameProjectDialog
@@ -174,6 +198,7 @@ function EditableProjectName() {
 	const editor = useEditor();
 	const activeProject = useEditor((e) => e.project.getActive());
 	const [isEditing, setIsEditing] = useState(false);
+	const t = useT();
 	const inputRef = useRef<HTMLInputElement>(null);
 	const originalNameRef = useRef("");
 
@@ -206,9 +231,9 @@ function EditableProjectName() {
 					name: newName,
 				});
 			} catch (error) {
-				toast.error("Failed to rename project", {
+				toast.error(t("Failed to rename project"), {
 					description:
-						error instanceof Error ? error.message : "Please try again",
+						error instanceof Error ? error.message : t("Please try again"),
 				});
 			}
 		}

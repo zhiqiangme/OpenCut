@@ -20,6 +20,7 @@ import {
 	clearFormDraft,
 } from "@/components/ui/form";
 import type { FeedbackEntry } from "../types";
+import { useT } from "@/i18n";
 
 const PERSIST_KEY = "feedback-draft";
 const HISTORY_KEY = "feedback-history";
@@ -112,6 +113,7 @@ type View = "compose" | "history";
 function FeedbackPopoverContent({ onClose }: { onClose: () => void }) {
 	const { entries, isSubmitting, submit } = useFeedback();
 	const [view, setView] = useState<View>("compose");
+	const t = useT();
 
 	const form = useForm<FeedbackFormValues>({
 		defaultValues: { message: "" },
@@ -166,7 +168,7 @@ function FeedbackPopoverContent({ onClose }: { onClose: () => void }) {
 							<FormItem>
 								<FormControl>
 									<Textarea
-										placeholder="Thoughts, bugs, ideas..."
+										placeholder={t("Thoughts, bugs, ideas...")}
 										className="min-h-[7rem] text-sm p-3 bg-background shadow-none border-none! resize-none"
 										{...field}
 									/>
