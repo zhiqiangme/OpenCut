@@ -26,7 +26,12 @@ Write-Host "==> [2/2] 启动 Web 服务端 (bun dev:web)" -ForegroundColor Cyan
 # 检测端口 3000 是否已被占用，避免重复启动
 $existing = Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue
 if ($existing) {
-    Write-Host "    Web 服务端已在运行，访问 http://localhost:3000" -ForegroundColor Yellow
+    Write-Host "    Web 服务端已在运行" -ForegroundColor Yellow
+    # 已运行时直接打开浏览器
+    Start-Process "http://localhost:3000"
+    Write-Host "已在浏览器打开 http://localhost:3000" -ForegroundColor Green
+    # 3 秒后窗口自动关闭
+    Start-Sleep -Seconds 3
     exit 0
 }
 
@@ -70,6 +75,26 @@ $pidFile = Join-Path $PSScriptRoot ".dev-server.pid"
 $proc.Id | Set-Content -Path $pidFile -Encoding ascii
 
 Write-Host "    dev server 已后台启动 (PID $($proc.Id))" -ForegroundColor Green
-Write-Host ""
-Write-Host "启动完成！访问 http://localhost:3000" -ForegroundColor Green
-Write-Host "停止程序：pwsh .\script\OpenCut-Stop.ps1"
+
+# 等待 dev server 就绪（轮询端口 3000，最多 30 秒）
+Write-Host "    等待服务就绪..." -ForegroundColor Cyan
+$ready = $false
+for ($i = 0; $i -lt 30; $i++) {
+    Start-Sleep -Seconds 1
+    $conn = Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue
+    if ($conn) { $ready = $true; break }
+}
+
+if ($ready) {
+    Write-Host "    服务已就绪" -ForegroundColor Green
+    # 自动用默认浏览器打开
+    Start-Process "http://localhost:3000"
+    Write-Host ""
+    Write-Host "启动完成！已在浏览器打开 http://localhost:3000" -ForegroundColor Green
+    Write-Host "停止程序：pwsh .\script\OpenCut-Stop.ps1"
+    # 3 秒后窗口自动关闭
+    Start-Sleep -Seconds 3
+} else {
+    Write-Warning "dev server 启动超时，请检查日志 $logDir\dev-server.log"
+    Start-Sleep -Seconds 5
+}
