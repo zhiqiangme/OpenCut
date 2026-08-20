@@ -30,13 +30,14 @@ export default function RootLayout({
 		<html lang="en" suppressHydrationWarning>
 			<head>
 				<BotIdClient protect={protectedRoutes} />
+				{/* React Scan 性能分析浮窗已关闭（右下角 FPS 框）。需要恢复时取消注释即可 */}
 				{process.env.NODE_ENV === "development" && (
 					<>
-						<Script
+						{/* <Script
 							src="//unpkg.com/react-scan/dist/auto.global.js"
 							crossOrigin="anonymous"
 							strategy="beforeInteractive"
-						/>
+						/> */}
 					</>
 				)}
 			</head>
