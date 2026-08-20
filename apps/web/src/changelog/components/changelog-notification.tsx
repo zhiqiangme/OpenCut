@@ -7,11 +7,13 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { Button } from "@/components/ui/button";
 import { getSortedReleases } from "../utils";
 import type { Release } from "../utils";
+import { useT } from "@/i18n";
 
 const STORAGE_KEY = "last-seen-version";
 
 export function ChangelogNotification() {
 	const [release, setRelease] = useState<Release | null>(null);
+	const t = useT();
 
 	useEffect(() => {
 		const releases = getSortedReleases();
@@ -63,7 +65,7 @@ export function ChangelogNotification() {
 					size="icon"
 					className="-mr-1 -mt-1 shrink-0"
 					onClick={() => setRelease(null)}
-					aria-label="Dismiss"
+					aria-label={t("Dismiss")}
 				>
 					<HugeiconsIcon icon={Cancel01Icon} className="size-4" />
 				</Button>
@@ -78,7 +80,7 @@ export function ChangelogNotification() {
 			<div className="flex justify-end">
 				<Button asChild size="sm">
 					<Link href="/changelog" onClick={() => setRelease(null)}>
-						See full changelog
+						{t("See full changelog")}
 					</Link>
 				</Button>
 			</div>

@@ -24,8 +24,8 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
 	return (
 		<BasePage
-			title="Privacy policy"
-			description="Learn how we handle your data and privacy. Contact us if you have any questions."
+			title="隐私政策"
+			description="了解我们如何处理你的数据与隐私。如有疑问，欢迎联系我们。"
 		>
 			<Accordion type="single" collapsible className="w-full">
 				<AccordionItem
@@ -33,11 +33,11 @@ export default function PrivacyPage() {
 					className="rounded-2xl border px-5"
 				>
 					<AccordionTrigger className="no-underline!">
-						Quick summary
+						快速摘要
 					</AccordionTrigger>
 					<AccordionContent>
 						<h3 className="mb-3 text-lg font-medium">
-							Your content never leaves your device.
+							你的内容绝不会离开你的设备。
 						</h3>
 						<ol className="list-decimal space-y-2 pl-6">
 							<li>
@@ -76,7 +76,7 @@ export default function PrivacyPage() {
 			</Accordion>
 
 			<section className="flex flex-col gap-3">
-				<h2 className="text-2xl font-semibold">How We Handle Your Content</h2>
+				<h2 className="text-2xl font-semibold">我们如何处理你的内容</h2>
 				<p>
 					<strong>
 						All editing and processing happens locally on your device.
@@ -89,7 +89,7 @@ export default function PrivacyPage() {
 			</section>
 
 			<section className="flex flex-col gap-3">
-				<h2 className="text-2xl font-semibold">Accounts & Authentication</h2>
+				<h2 className="text-2xl font-semibold">账户与认证</h2>
 				<p>
 					OpenCut does not currently offer user accounts, login, or Google
 					sign-in.
@@ -106,7 +106,7 @@ export default function PrivacyPage() {
 			</section>
 
 			<section className="flex flex-col gap-3">
-				<h2 className="text-2xl font-semibold">Analytics</h2>
+				<h2 className="text-2xl font-semibold">分析</h2>
 				<p>
 					We use{" "}
 					<a
@@ -127,7 +127,7 @@ export default function PrivacyPage() {
 			</section>
 
 			<section className="flex flex-col gap-3">
-				<h2 className="text-2xl font-semibold">Local Storage & Cookies</h2>
+				<h2 className="text-2xl font-semibold">本地存储与 Cookie</h2>
 				<p>We use browser local storage and IndexedDB to:</p>
 				<ul className="list-disc space-y-2 pl-6">
 					<li>Save your projects locally on your device</li>
@@ -141,7 +141,7 @@ export default function PrivacyPage() {
 			</section>
 
 			<section className="flex flex-col gap-3">
-				<h2 className="text-2xl font-semibold">Third-Party Services</h2>
+				<h2 className="text-2xl font-semibold">第三方服务</h2>
 				<p>OpenCut integrates with these services:</p>
 				<ul className="list-disc space-y-2 pl-6">
 					<li>
@@ -154,7 +154,7 @@ export default function PrivacyPage() {
 			</section>
 
 			<section className="flex flex-col gap-3">
-				<h2 className="text-2xl font-semibold">Your Rights</h2>
+				<h2 className="text-2xl font-semibold">你的权利</h2>
 				<p>You have complete control over your data:</p>
 				<ul className="list-disc space-y-2 pl-6">
 					<li>No account is required to use OpenCut today</li>
@@ -164,7 +164,7 @@ export default function PrivacyPage() {
 			</section>
 
 			<section className="flex flex-col gap-3">
-				<h2 className="text-2xl font-semibold">Open Source Transparency</h2>
+				<h2 className="text-2xl font-semibold">开源透明度</h2>
 				<p>
 					OpenCut is completely open source. You can review our code, see
 					exactly how we handle data, and even self-host the application if you
@@ -185,7 +185,7 @@ export default function PrivacyPage() {
 			</section>
 
 			<section className="flex flex-col gap-3">
-				<h2 className="text-2xl font-semibold">Contact Us</h2>
+				<h2 className="text-2xl font-semibold">联系我们</h2>
 				<p>Questions about this privacy policy or how we handle your data?</p>
 				<p>
 					Open an issue on our{" "}

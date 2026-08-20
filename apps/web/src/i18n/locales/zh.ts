@@ -252,4 +252,87 @@ export const zh: Record<string, string> = {
 
 	// 反馈
 	"Thoughts, bugs, ideas...": "想法、bug、建议...",
+
+	// 营销页 - 导航
+	"Roadmap": "路线图",
+	"Contributors": "贡献者",
+	"Sponsors": "赞助者",
+	"Blog": "博客",
+	"Changelog": "更新日志",
+	"Privacy": "隐私政策",
+	"Terms of use": "使用条款",
+	"Brand": "品牌",
+	"About": "关于",
+	"Projects": "项目",
+	"Resources": "资源",
+	"Company": "公司",
+	"Copy SVG": "复制 SVG",
+	"Download SVG": "下载 SVG",
+	"Brand assets": "品牌资源",
+	"Close menu": "关闭菜单",
+
+	// 营销页 - 首页 Hero
+	"The open source": "开源",
+	"Video editor": "视频编辑器",
+	"A simple but powerful video editor that gets the job done. Works on any platform.":
+		"一款简单却强大的视频编辑器，跨平台可用，帮你高效完成工作。",
+	"Try early beta": "体验早期测试版",
+
+	// 营销页 - 页脚
+	"The privacy-first video editor that feels simple to use.":
+		"注重隐私、简单易用的视频编辑器。",
+	"All Rights Reserved": "保留所有权利",
+
+	// 营销页 - 贡献
+	"Start contributing": "开始贡献",
+	"Report issues": "报告问题",
+
+	// 营销页 - sponsors
+	"Support OpenCut and help us build the future of privacy-first video editing.":
+		"支持 OpenCut，与我们共建注重隐私的视频编辑未来。",
+
+	// 营销页 - roadmap
+	"What's coming next for OpenCut (last updated: {date})":
+		"OpenCut 的下一步计划（最后更新：{date}）",
+	"Want to help?": "想帮忙吗？",
+	"OpenCut is open source and built by the community. Every contribution, no matter how small, helps us build the best free video editor possible.":
+		"OpenCut 是开源项目，由社区共同构建。每一份贡献，无论多小，都在帮我们打造最好的免费视频编辑器。",
+	"Start": "起点",
+	"This is where it all started. Repository created, initial project structure, and the vision for a free, open-source video editor. [Check out the first tweet](https://x.com/mazeincoding/status/1936706642512388188) to see where it started.":
+		"一切从这里开始。仓库创建、初始项目结构，以及打造一款免费、开源视频编辑器的愿景。[查看第一条推文](https://x.com/mazeincoding/status/1936706642512388188)，了解它的起点。",
+	"Core UI": "核心界面",
+	"Build the foundation - main layout, header, sidebar, timeline container, and basic component structure. Not all functionality yet, but the UI framework that everything else builds on.":
+		"打好基础——主布局、顶栏、侧边栏、时间轴容器和基础组件结构。功能尚未齐全，但这是后续一切所依赖的界面框架。",
+	"Essential functionality": "核心功能",
+	"Everything that makes a video editor **useful**. Timeline interactivity, storage, effects, transitions, etc.":
+		"让视频编辑器真正**实用**的一切：时间轴交互、存储、特效、转场等。",
+	"Native app (mobile/desktop)": "原生应用（移动端/桌面端）",
+	"Native OpenCut apps for Mac, Windows, Linux, and iOS/Android.":
+		"面向 Mac、Windows、Linux 以及 iOS/Android 的 OpenCut 原生应用。",
+	"Completed": "已完成",
+	"In progress": "进行中",
+	"Not started": "未开始",
+
+	// 营销页 - changelog
+	"See what's new in OpenCut": "查看 OpenCut 的新变化",
+	"Features": "功能",
+	"Improvements": "改进",
+	"Fixes": "修复",
+	"Breaking Changes": "破坏性变更",
+	"Technical details": "技术细节",
+	"Copy as markdown": "以 Markdown 复制",
+	"Copied!": "已复制！",
+	"Copy markdown": "复制 Markdown",
+	"Dismiss": "关闭",
+	"See full changelog": "查看完整更新日志",
+
+	// 营销页 - brand
+	"Download OpenCut brand assets for use in your projects.":
+		"下载 OpenCut 品牌资源，用于你的项目。",
+	"Read the brand guidelines.": "阅读品牌使用规范。",
+	"Download all": "下载全部",
+	"Usage": "使用规范",
+	"What's not allowed": "禁止事项",
+	"Symbol": "符号",
+	"Lockup": "组合标识",
 };

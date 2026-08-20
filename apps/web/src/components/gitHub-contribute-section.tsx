@@ -1,8 +1,11 @@
+"use client";
+
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { SOCIAL_LINKS } from "@/site/social";
 import { GithubIcon, Link04Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import { useT } from "@/i18n";
 
 export function GitHubContributeSection({
 	title,
@@ -11,6 +14,8 @@ export function GitHubContributeSection({
 	title: string;
 	description: string;
 }) {
+	const t = useT();
+
 	return (
 		<div className="flex flex-col gap-6">
 			<div className="flex flex-col gap-4 text-center">
@@ -25,7 +30,7 @@ export function GitHubContributeSection({
 				>
 					<Button className="w-full" size="lg">
 						<HugeiconsIcon icon={GithubIcon} />
-						Start contributing
+						{t("Start contributing")}
 					</Button>
 				</Link>
 				<Link
@@ -35,7 +40,7 @@ export function GitHubContributeSection({
 				>
 					<Button variant="outline" className="w-full" size="lg">
 						<HugeiconsIcon icon={Link04Icon} />
-						Report issues
+						{t("Report issues")}
 					</Button>
 				</Link>
 			</div>

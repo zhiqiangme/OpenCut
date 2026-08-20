@@ -10,6 +10,7 @@ import {
 import type { Change } from "../utils";
 import { cn } from "@/utils/ui";
 import { Button } from "@/components/ui/button";
+import { useT } from "@/i18n";
 
 function buildMarkdown({
 	description,
@@ -68,6 +69,7 @@ export function CopyMarkdownButton({
 	changes: Change[];
 }) {
 	const [copied, setCopied] = useState(false);
+	const t = useT();
 
 	const handleCopy = async () => {
 		const markdown = buildMarkdown({ description, changes });
@@ -85,14 +87,14 @@ export function CopyMarkdownButton({
 				"flex items-center gap-1.5",
 				copied && "pointer-events-none",
 			)}
-			title="Copy as markdown"
+			title={t("Copy as markdown")}
 		>
 			{copied ? (
 				<CheckIcon className="size-4" />
 			) : (
 				<ClipboardIcon className="size-4" />
 			)}
-			{copied ? "Copied!" : "Copy markdown"}
+			{copied ? t("Copied!") : t("Copy markdown")}
 		</Button>
 	);
 }

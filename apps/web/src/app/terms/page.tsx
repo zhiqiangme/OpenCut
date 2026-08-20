@@ -24,8 +24,8 @@ export const metadata: Metadata = {
 export default function TermsPage() {
 	return (
 		<BasePage
-			title="Terms of service"
-			description="Fair and transparent terms for our free, open-source video editor. Contact us if you have any questions."
+			title="服务条款"
+			description="我们免费、开源视频编辑器的公平透明条款。如有疑问，欢迎联系我们。"
 		>
 			<Accordion type="single" collapsible className="w-full">
 				<AccordionItem
@@ -33,11 +33,11 @@ export default function TermsPage() {
 					className="rounded-2xl border px-5"
 				>
 					<AccordionTrigger className="no-underline!">
-						Quick summary
+						快速摘要
 					</AccordionTrigger>
 					<AccordionContent>
 						<h3 className="mb-3 text-lg font-medium">
-							You own your content, we own nothing.
+							你拥有你的内容，我们不拥有任何东西。
 						</h3>
 						<ol className="list-decimal space-y-2 pl-6">
 							<li>
@@ -81,7 +81,7 @@ export default function TermsPage() {
 			</Accordion>
 
 			<section className="flex flex-col gap-3">
-				<h2 className="text-2xl font-semibold">Your Content, Your Rights</h2>
+				<h2 className="text-2xl font-semibold">你的内容，你的权利</h2>
 				<p>
 					<strong>You own everything you create.</strong> All editing and
 					processing happens locally on your device. We never see, store, or
@@ -100,7 +100,7 @@ export default function TermsPage() {
 			</section>
 
 			<section className="flex flex-col gap-3">
-				<h2 className="text-2xl font-semibold">How You Can Use OpenCut</h2>
+				<h2 className="text-2xl font-semibold">如何使用 OpenCut</h2>
 				<p>OpenCut is free for personal and commercial use. You can:</p>
 				<ul className="list-disc space-y-2 pl-6">
 					<li>
@@ -119,7 +119,7 @@ export default function TermsPage() {
 			</section>
 
 			<section className="flex flex-col gap-3">
-				<h2 className="text-2xl font-semibold">AI Features</h2>
+				<h2 className="text-2xl font-semibold">AI 功能</h2>
 				<p>
 					AI features like auto captions run entirely in your browser using
 					on-device models. No content is uploaded to any server. These features
@@ -128,7 +128,7 @@ export default function TermsPage() {
 			</section>
 
 			<section className="flex flex-col gap-3">
-				<h2 className="text-2xl font-semibold">Service</h2>
+				<h2 className="text-2xl font-semibold">服务</h2>
 				<p>
 					OpenCut does not currently require an account. The service is provided
 					&quot;as is&quot; without warranties. While we strive for
@@ -137,7 +137,7 @@ export default function TermsPage() {
 			</section>
 
 			<section className="flex flex-col gap-3">
-				<h2 className="text-2xl font-semibold">Open Source Benefits</h2>
+				<h2 className="text-2xl font-semibold">开源优势</h2>
 				<p>Because OpenCut is open source, you have additional rights:</p>
 				<ul className="list-disc space-y-2 pl-6">
 					<li>Review our code to see exactly how we handle your data</li>
@@ -160,7 +160,7 @@ export default function TermsPage() {
 			</section>
 
 			<section className="flex flex-col gap-3">
-				<h2 className="text-2xl font-semibold">Limitations and Liability</h2>
+				<h2 className="text-2xl font-semibold">限制与责任</h2>
 				<p>
 					OpenCut is provided free of charge. To the extent permitted by law:
 				</p>
@@ -181,7 +181,7 @@ export default function TermsPage() {
 			</section>
 
 			<section className="flex flex-col gap-3">
-				<h2 className="text-2xl font-semibold">Service Changes</h2>
+				<h2 className="text-2xl font-semibold">服务变更</h2>
 				<p>We may update OpenCut and these terms:</p>
 				<ul className="list-disc space-y-2 pl-6">
 					<li>We&apos;ll notify you of significant changes to these terms</li>
@@ -192,7 +192,7 @@ export default function TermsPage() {
 			</section>
 
 			<section className="flex flex-col gap-3">
-				<h2 className="text-2xl font-semibold">Stopping Use</h2>
+				<h2 className="text-2xl font-semibold">停止使用</h2>
 				<p>You can stop using OpenCut at any time:</p>
 				<ul className="list-disc space-y-2 pl-6">
 					<li>Clear your browser data to remove local projects</li>
@@ -200,7 +200,7 @@ export default function TermsPage() {
 			</section>
 
 			<section className="flex flex-col gap-3">
-				<h2 className="text-2xl font-semibold">Contact Us</h2>
+				<h2 className="text-2xl font-semibold">联系我们</h2>
 				<p>Questions about these terms or need to report an issue?</p>
 				<p>
 					Contact us through our{" "}

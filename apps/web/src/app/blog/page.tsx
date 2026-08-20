@@ -19,12 +19,12 @@ export const metadata: Metadata = {
 
 export default async function BlogPage() {
 	const data = await getPosts().catch(() => null);
-	if (!data || !data.posts) return <div>No posts yet</div>;
+	if (!data || !data.posts) return <div>暂无文章</div>;
 
 	return (
 		<BasePage
-			title="Blog"
-			description="Read the latest news and updates about OpenCut, the free and open-source video editor."
+			title="博客"
+			description="阅读 OpenCut 的最新动态与更新，这是一款免费、开源的视频编辑器。"
 		>
 			<div className="flex flex-col">
 				{data.posts.map((post) => (

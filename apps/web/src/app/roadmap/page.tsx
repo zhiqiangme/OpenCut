@@ -1,9 +1,11 @@
-import type { Metadata } from "next";
+"use client";
+
 import { BasePage } from "@/app/base-page";
 import { GitHubContributeSection } from "@/components/gitHub-contribute-section";
 import { Badge } from "@/components/ui/badge";
 import { ReactMarkdownWrapper } from "@/components/ui/react-markdown-wrapper";
 import { cn } from "@/utils/ui";
+import { useT } from "@/i18n";
 
 const LAST_UPDATED = "February 25, 2026";
 
@@ -59,38 +61,15 @@ const roadmapItems: RoadmapItem[] = [
 	},
 ];
 
-export const metadata: Metadata = {
-	title: "Roadmap - OpenCut",
-	description:
-		"See what's coming next for OpenCut - the free, open-source video editor that respects your privacy.",
-	openGraph: {
-		title: "OpenCut Roadmap - What's Coming Next",
-		description:
-			"See what's coming next for OpenCut - the free, open-source video editor that respects your privacy.",
-		type: "website",
-		images: [
-			{
-				url: "/open-graph/roadmap.jpg",
-				width: 1200,
-				height: 630,
-				alt: "OpenCut Roadmap",
-			},
-		],
-	},
-	twitter: {
-		card: "summary_large_image",
-		title: "OpenCut Roadmap - What's Coming Next",
-		description:
-			"See what's coming next for OpenCut - the free, open-source video editor that respects your privacy.",
-		images: ["/open-graph/roadmap.jpg"],
-	},
-};
-
 export default function RoadmapPage() {
+	const t = useT();
+
 	return (
 		<BasePage
-			title="Roadmap"
-			description={`What's coming next for OpenCut (last updated: ${LAST_UPDATED})`}
+			title={t("Roadmap")}
+			description={t("What's coming next for OpenCut (last updated: {date})", {
+				date: LAST_UPDATED,
+			})}
 		>
 			<div className="mx-auto flex max-w-4xl flex-col gap-16">
 				<div className="flex flex-col gap-6">
@@ -99,10 +78,10 @@ export default function RoadmapPage() {
 					))}
 				</div>
 				<GitHubContributeSection
-					title="Want to help?"
-					description="OpenCut is open source and built by the community. Every contribution,
-          no matter how small, helps us build the best free video editor
-          possible."
+					title={t("Want to help?")}
+					description={t(
+						"OpenCut is open source and built by the community. Every contribution, no matter how small, helps us build the best free video editor possible.",
+					)}
 				/>
 			</div>
 		</BasePage>
@@ -110,15 +89,17 @@ export default function RoadmapPage() {
 }
 
 function RoadmapItem({ item, index }: { item: RoadmapItem; index: number }) {
+	const t = useT();
+
 	return (
 		<div className="flex flex-col gap-2">
 			<div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-lg font-medium">
 				<span className="leading-normal select-none">{index + 1}</span>
-				<h3>{item.title}</h3>
+				<h3>{t(item.title)}</h3>
 				<StatusBadge status={item.status} className="ml-1" />
 			</div>
 			<div className="text-foreground/70 leading-relaxed">
-				<ReactMarkdownWrapper>{item.description}</ReactMarkdownWrapper>
+				<ReactMarkdownWrapper>{t(item.description)}</ReactMarkdownWrapper>
 			</div>
 		</div>
 	);
@@ -131,6 +112,8 @@ function StatusBadge({
 	status: Status;
 	className?: string;
 }) {
+	const t = useT();
+
 	return (
 		<Badge
 			className={cn("shadow-none", className, {
@@ -140,7 +123,7 @@ function StatusBadge({
 				"bg-foreground/10! text-accent-foreground": status.type === "default",
 			})}
 		>
-			{status.text}
+			{t(status.text)}
 		</Badge>
 	);
 }

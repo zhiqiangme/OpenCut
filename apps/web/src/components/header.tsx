@@ -7,6 +7,7 @@ import { Button } from "./ui/button";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { ThemeToggle } from "./theme-toggle";
+import { useT } from "@/i18n";
 import {
 	Copy01Icon,
 	Download01Icon,
@@ -28,6 +29,7 @@ import {
 export function Header() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const closeMenu = () => setIsMenuOpen(false);
+	const t = useT();
 
 	const links = [
 		{
@@ -73,7 +75,7 @@ export function Header() {
 								}}
 							>
 								<HugeiconsIcon icon={Copy01Icon} />
-								Copy SVG
+								{t("Copy SVG")}
 							</ContextMenuItem>
 							<ContextMenuItem
 								onClick={() => {
@@ -84,12 +86,12 @@ export function Header() {
 								}}
 							>
 								<HugeiconsIcon icon={Download01Icon} />
-								Download SVG
+								{t("Download SVG")}
 							</ContextMenuItem>
 							<Link href="/brand">
 								<ContextMenuItem>
 									<HugeiconsIcon icon={LinkSquare02Icon} />
-									Brand assets
+									{t("Brand assets")}
 								</ContextMenuItem>
 							</Link>
 						</ContextMenuContent>
@@ -99,7 +101,7 @@ export function Header() {
 						{links.map((link) => (
 							<Link key={link.href} href={link.href}>
 								<Button variant="text" className="p-0 text-sm">
-									{link.label}
+									{t(link.label)}
 								</Button>
 							</Link>
 						))}
@@ -126,7 +128,7 @@ export function Header() {
 						</Link>
 						<Link href="/projects">
 							<Button className="text-sm">
-								Projects
+								{t("Projects")}
 								<ArrowRight className="size-4" />
 							</Button>
 						</Link>
@@ -143,7 +145,7 @@ export function Header() {
 					<div className="relative h-full">
 						<button
 							type="button"
-							aria-label="Close menu"
+							aria-label={t("Close menu")}
 							className="absolute inset-0"
 							onClick={closeMenu}
 							onKeyDown={(event) => {
@@ -177,7 +179,7 @@ export function Header() {
 										className="text-2xl font-semibold"
 										onClick={() => setIsMenuOpen(false)}
 									>
-										{link.label}
+										{t(link.label)}
 									</Link>
 								</motion.div>
 							))}

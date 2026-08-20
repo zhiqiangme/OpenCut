@@ -1,3 +1,5 @@
+"use client";
+
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { cn } from "@/utils/ui";
@@ -11,6 +13,7 @@ import {
 } from "../utils";
 import { ArrowRightIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import { useT } from "@/i18n";
 
 export function ReleaseArticle({
 	variant,
@@ -106,7 +109,8 @@ function ReleaseChangeSection({
 	type: string;
 	changes: Change[];
 }) {
-	const title = getSectionTitle({ type });
+	const t = useT();
+	const title = t(getSectionTitle({ type }));
 
 	if (isSectionCollapsible({ type })) {
 		return (

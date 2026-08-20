@@ -69,12 +69,12 @@ export default async function ContributorsPage() {
 
 	return (
 		<BasePage
-			title="Contributors"
-			description="Meet the amazing people who contribute to OpenCut, the free and open-source video editor."
+			title="贡献者"
+			description="认识为 OpenCut 做出贡献的优秀开发者，这是一款免费、开源的视频编辑器。"
 		>
 			<div className="-mt-4 flex items-center justify-center gap-8 text-sm">
-				<StatItem value={contributors.length} label="contributors" />
-				<StatItem value={totalContributions} label="contributions" />
+				<StatItem value={contributors.length} label="贡献者" />
+				<StatItem value={totalContributions} label="次贡献" />
 			</div>
 
 			<div className="mx-auto flex max-w-6xl flex-col gap-20">
@@ -86,8 +86,8 @@ export default async function ContributorsPage() {
 				)}
 				<ExternalToolsSection />
 				<GitHubContributeSection
-					title="Join the community"
-					description="OpenCut is built by developers like you. Every contribution, no matter how small, helps make video editing more accessible for everyone."
+					title="加入社区"
+					description="OpenCut 由像你一样的开发者共同构建。每一份贡献，无论大小，都能让视频编辑对每个人更加触手可及。"
 				/>
 			</div>
 		</BasePage>
@@ -112,9 +112,9 @@ function TopContributorsSection({
 	return (
 		<div className="flex flex-col gap-10">
 			<div className="flex flex-col gap-2 text-center">
-				<h2 className="text-2xl font-semibold">Top contributors</h2>
+				<h2 className="text-2xl font-semibold">顶级贡献者</h2>
 				<p className="text-muted-foreground">
-					Leading the way in contributions
+					贡献领跑者
 				</p>
 			</div>
 
@@ -150,7 +150,7 @@ function TopContributorCard({ contributor }: { contributor: Contributor }) {
 						<h3 className="text-xl font-semibold">{contributor.login}</h3>
 						<div className="flex items-center justify-center gap-2">
 							<span className="font-medium">{contributor.contributions}</span>
-							<span className="text-muted-foreground">contributions</span>
+							<span className="text-muted-foreground">次贡献</span>
 						</div>
 					</div>
 				</CardContent>
@@ -167,9 +167,9 @@ function AllContributorsSection({
 	return (
 		<div className="flex flex-col gap-12">
 			<div className="flex flex-col gap-2 text-center">
-				<h2 className="text-2xl font-semibold">All contributors</h2>
+				<h2 className="text-2xl font-semibold">全部贡献者</h2>
 				<p className="text-muted-foreground">
-					Everyone who makes OpenCut better
+					每一位让 OpenCut 更好的人
 				</p>
 			</div>
 
@@ -210,8 +210,8 @@ function ExternalToolsSection() {
 	return (
 		<div className="flex flex-col gap-10">
 			<div className="flex flex-col gap-2 text-center">
-				<h2 className="text-2xl font-semibold">External tools</h2>
-				<p className="text-muted-foreground">Tools we use to build OpenCut</p>
+				<h2 className="text-2xl font-semibold">外部工具</h2>
+				<p className="text-muted-foreground">我们构建 OpenCut 使用的工具</p>
 			</div>
 
 			<div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-2">
