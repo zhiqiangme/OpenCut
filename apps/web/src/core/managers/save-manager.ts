@@ -85,7 +85,9 @@ export class SaveManager {
 		if (this.isSaving) return;
 		if (!this.hasPendingSave) return;
 
-		const activeProject = this.editor.project.getActive();
+		// 用 getActiveOrNull 而非 getActive：save 定时器触发时可能已无活动项目
+		// （如用户刚退出项目但防抖定时器尚未清除），此时应静默跳过而非抛 "No active project"
+		const activeProject = this.editor.project.getActiveOrNull();
 		if (!activeProject) return;
 		if (this.editor.project.getIsLoading()) return;
 		if (this.editor.project.getMigrationState().isMigrating) return;
