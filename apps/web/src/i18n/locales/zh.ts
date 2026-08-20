@@ -345,4 +345,31 @@ export const zh: Record<string, string> = {
 	"Drag and drop videos, photos, and audio files here":
 		"拖放视频、图片和音频文件到这里",
 	"Fit": "适配",
+
+	// 音效面板
+	"Sound effects": "音效",
+	"Saved": "已保存",
+	"Search sound effects": "搜索音效",
+	"Show only commercially licensed": "仅显示可商用授权",
+	"Only showing sounds licensed for commercial use": "仅显示可商用的音效",
+	"Showing all sounds regardless of license": "显示所有音效（不限授权）",
+	"Loading sounds...": "加载音效中...",
+	"Searching...": "搜索中...",
+	"No sounds found": "未找到音效",
+	"No sounds available": "暂无可用音效",
+	"Loading more sounds...": "加载更多音效...",
+	"Loading saved sounds...": "加载已保存音效中...",
+	"Error: {message}": "错误：{message}",
+	"No saved sounds": "暂无已保存音效",
+	"Click the heart icon on any sound to save it here":
+		"点击任意音效的心形图标即可保存到这里",
+	"{count} saved sounds": "已保存 {count} 个音效",
+	"Clear all": "全部清除",
+	"Clear all saved sounds?": "清除所有已保存音效？",
+	"This will permanently remove all {count} saved sounds from your collection. This action cannot be undone.":
+		"这将从你的收藏中永久删除全部 {count} 个已保存音效。此操作无法撤销。",
+	"Clear all sounds": "清除所有音效",
+	"Add to timeline": "添加到时间轴",
+	"Remove from saved": "从已保存移除",
+	"Save sound": "保存音效",
 };
