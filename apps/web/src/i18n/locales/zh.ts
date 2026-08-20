@@ -372,4 +372,101 @@ export const zh: Record<string, string> = {
 	"Add to timeline": "添加到时间轴",
 	"Remove from saved": "从已保存移除",
 	"Save sound": "保存音效",
+
+	// 即将推出
+	"Transitions view coming soon...": "转场视图即将推出...",
+	"Adjustment view coming soon...": "调整视图即将推出...",
+
+	// 参数面板 - 混合模式
+	"Normal": "正常",
+	"Darken": "变暗",
+	"Multiply": "正片叠底",
+	"Color Burn": "颜色加深",
+	"Lighten": "变亮",
+	"Screen": "滤色",
+	"Plus Lighter": "叠加变亮",
+	"Color Dodge": "颜色减淡",
+	"Overlay": "叠加",
+	"Soft Light": "柔光",
+	"Hard Light": "强光",
+	"Difference": "差值",
+	"Exclusion": "排除",
+	"Hue": "色相",
+	"Saturation": "饱和度",
+	"Color": "颜色",
+	"Luminosity": "明度",
+
+	// 参数面板 - 变换
+	"Position X": "位置 X",
+	"Position Y": "位置 Y",
+	"Scale X": "缩放 X",
+	"Scale Y": "缩放 Y",
+	"Rotate": "旋转",
+	"Opacity": "不透明度",
+	"Blend Mode": "混合模式",
+
+	// 参数面板 - 音频
+	"Volume": "音量",
+	"Muted": "静音",
+
+	// 参数面板 - 文字
+	"Content": "内容",
+	"Default text": "默认文字",
+	"Font Family": "字体",
+	"Font Size": "字号",
+	"Text Align": "文字对齐",
+	"Center": "居中",
+	"Font Weight": "字重",
+	"Bold": "粗体",
+	"Font Style": "字体样式",
+	"Italic": "斜体",
+	"Text Decoration": "文字装饰",
+	"None": "无",
+	"Underline": "下划线",
+	"Line Through": "删除线",
+	"Letter Spacing": "字间距",
+	"Line Height": "行高",
+	"Background Enabled": "启用背景",
+	"Background Color": "背景颜色",
+	"Background Radius": "背景圆角",
+	"Background Padding X": "背景内边距 X",
+	"Background Padding Y": "背景内边距 Y",
+	"Background Offset X": "背景偏移 X",
+	"Background Offset Y": "背景偏移 Y",
+
+	// 背景 tab 分组
+	"Pattern craft": "图案制作",
+	"Syntax UI": "语法 UI",
+
+	// 贴纸
+	"Sticker categories": "贴纸分类",
+	"No stickers found": "未找到贴纸",
+	"{total} results": "{total} 个结果",
+	'No stickers found for "{query}"': "未找到与 \"{query}\" 相关的贴纸",
+	"No stickers available yet.": "暂无贴纸",
+	"No stickers available in {category} yet.": "暂无 {category} 分类的贴纸",
+	"Clear": "清除",
+	"See all": "查看全部",
+	"Failed to add sticker to timeline": "添加贴纸到时间轴失败",
+	"All": "全部",
+	"Flags": "旗帜",
+	"Shapes": "形状",
+
+	// 字幕
+	"Select a language": "选择语言",
+	"Auto detect": "自动检测",
+	"Generate transcript": "生成转录",
+	"Loading model {percent}%": "加载模型 {percent}%",
+	"Transcribing...": "转录中...",
+	"Extracting audio...": "提取音频中...",
+	"Preparing audio...": "准备音频中...",
+	"Generating captions...": "生成字幕中...",
+	"No captions were generated": "未能生成字幕",
+	"An unexpected error occurred": "发生意外错误",
+	"Reading subtitle file...": "读取字幕文件中...",
+	"No valid subtitle cues were found in the subtitle file":
+		"在字幕文件中未找到有效的字幕条目",
+	"Importing subtitles...": "导入字幕中...",
+	"Imported {count} subtitle cue(s) and skipped {skipped} malformed cue(s).":
+		"导入了 {count} 条字幕，跳过 {skipped} 条格式错误的字幕",
 };
