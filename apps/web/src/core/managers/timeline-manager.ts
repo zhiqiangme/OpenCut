@@ -738,9 +738,7 @@ export class TimelineManager {
 			return;
 		}
 		this.previewTracks = this.applyPreviewOverlay(committedTracks);
-		// Microtask 延迟 notify：避免在 input event 同步处理中触发 useSyncExternalStore
-		// 标记重渲染，避免 React 调度打断连续的 textarea 输入事件
-		queueMicrotask(() => this.notify());
+		this.notify();
 	}
 
 	commitPreview(): void {

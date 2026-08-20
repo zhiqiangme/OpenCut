@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import type {
 	ParamDefinition,
 	NumberParamDefinition,
@@ -143,26 +144,105 @@ function ParamInput({
 
 	if (param.type === "text") {
 		return (
-			<Textarea
+			<TextParamField
 				value={String(value)}
-				onChange={(event) => onPreview(event.currentTarget.value)}
-				onBlur={onCommit}
+				onPreview={onPreview}
+				onCommit={onCommit}
 			/>
 		);
 	}
 
 	if (param.type === "font") {
 		return (
-			<input
-				className="border-input bg-accent h-9 w-full rounded-md border px-3 text-sm outline-none"
+			<FontParamField
 				value={String(value)}
-				onChange={(event) => onPreview(event.currentTarget.value)}
-				onBlur={onCommit}
+				onPreview={onPreview}
+				onCommit={onCommit}
 			/>
 		);
 	}
 
 	return null;
+}
+
+function TextParamField({
+	value,
+	onPreview,
+	onCommit,
+}: {
+	value: string;
+	onPreview: (value: string) => void;
+	onCommit: () => void;
+}) {
+	// 本地输入缓冲：value 来自 committed 轨道，onPreview 只更新 previewOverlay（不提交）。
+	// 若直接 value 绑定，每次输入后 React 会回滚到 committed 旧值，导致一次只能输入一个字符。
+	const [isEditing, setIsEditing] = useState(false);
+	const [draft, setDraft] = useState(value);
+
+	useEffect(() => {
+		if (!isEditing) {
+			setDraft(value);
+		}
+	}, [value, isEditing]);
+
+	return (
+		<Textarea
+			value={isEditing ? draft : value}
+			onFocus={(event) => {
+				setIsEditing(true);
+				setDraft(event.currentTarget.value);
+			}}
+			onChange={(event) => {
+				const next = event.currentTarget.value;
+				setDraft(next);
+				onPreview(next);
+			}}
+			onBlur={() => {
+				setIsEditing(false);
+				onCommit();
+			}}
+		/>
+	);
+}
+
+function FontParamField({
+	value,
+	onPreview,
+	onCommit,
+}: {
+	value: string;
+	onPreview: (value: string) => void;
+	onCommit: () => void;
+}) {
+	// 与 TextParamField 相同的本地缓冲逻辑，用于单行 input（如字体名）
+	const [isEditing, setIsEditing] = useState(false);
+	const [draft, setDraft] = useState(value);
+
+	useEffect(() => {
+		if (!isEditing) {
+			setDraft(value);
+		}
+	}, [value, isEditing]);
+
+	return (
+		<input
+			className="border-input bg-accent h-9 w-full rounded-md border px-3 text-sm outline-none"
+			value={isEditing ? draft : value}
+			onFocus={(event) => {
+				setIsEditing(true);
+				setDraft(event.currentTarget.value);
+			}}
+			onChange={(event) => {
+				const next = event.currentTarget.value;
+				setDraft(next);
+				onPreview(next);
+			}}
+			onBlur={() => {
+				setIsEditing(false);
+				onCommit();
+			}}
+		/>
+	);
 }
 
 function NumberParamField({
