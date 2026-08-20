@@ -373,6 +373,9 @@ export const zh: Record<string, string> = {
 	"Remove from saved": "从已保存移除",
 	"Save sound": "保存音效",
 
+	// 特效
+	"Intensity": "强度",
+
 	// 即将推出
 	"Transitions view coming soon...": "转场视图即将推出...",
 	"Adjustment view coming soon...": "调整视图即将推出...",
