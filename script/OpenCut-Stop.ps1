@@ -1,5 +1,5 @@
 # OpenCut 停止脚本（需 PowerShell 7 / pwsh 运行）
-# 功能：停止 Web 服务端（Next.js，端口 3000）和 WSL2 数据库（PostgreSQL + Redis）
+# 功能：停止 Web 服务端（Next.js，端口 3000）和 Docker 后端（PostgreSQL + Redis + Upstash REST API）
 # 用法：pwsh .\script\OpenCut-Stop.ps1
 
 $ErrorActionPreference = "Stop"
@@ -34,8 +34,21 @@ try {
         Write-Host "    Web 服务端已停止"
     }
 
-    Write-Host "==> [2/2] 停止数据库 (WSL2)" -ForegroundColor Cyan
-    wsl -u root -e bash -lc "service postgresql stop 2>/dev/null; service redis-server stop 2>/dev/null" | Out-Null
+    Write-Host "==> [2/2] 停止后端服务 (Docker)" -ForegroundColor Cyan
+    # 定位 docker（与启动脚本一致，兜底 per-user 安装路径）
+    if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
+        $dockerBin = Join-Path $env:LOCALAPPDATA "Programs\DockerDesktop\resources\bin"
+        if (Test-Path (Join-Path $dockerBin "docker.exe")) {
+            $env:PATH = "$dockerBin;$env:PATH"
+        }
+    }
+    # 停止后端容器（保留数据卷，下次启动可恢复；未运行则无害跳过）
+    if (Get-Command docker -ErrorAction SilentlyContinue) {
+        docker compose stop db redis serverless-redis-http *> $null
+        Write-Host "    PostgreSQL + Redis + Upstash REST API 已停止"
+    } else {
+        Write-Host "    docker 不可用，跳过" -ForegroundColor Yellow
+    }
 
     Write-Host ""
     Write-Host "停止完成" -ForegroundColor Green

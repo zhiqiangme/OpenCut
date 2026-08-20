@@ -1,5 +1,5 @@
 # OpenCut 启动脚本（需 PowerShell 7 / pwsh 运行）
-# 功能：启动 WSL2 数据库（PostgreSQL + Redis），再后台启动 Web 服务端（Next.js）
+# 功能：启动 Docker 后端（PostgreSQL + Redis + Upstash REST API），再后台启动 Web 服务端（Next.js）
 # 用法：pwsh .\script\OpenCut-Start.ps1
 # 停止：pwsh .\script\OpenCut-Stop.ps1
 
@@ -8,17 +8,59 @@ $ErrorActionPreference = "Stop"
 # 项目根目录（script 的上一级）
 $root = Split-Path -Parent $PSScriptRoot
 
-Write-Host "==> [1/2] 启动数据库 (WSL2: PostgreSQL + Redis)" -ForegroundColor Cyan
-# 启动 WSL2 里的数据库服务（已在运行则无害跳过）
-wsl -u root -e bash -lc "service postgresql start 2>/dev/null; service redis-server start 2>/dev/null" | Out-Null
+Write-Host "==> [1/2] 启动后端服务 (Docker: PostgreSQL + Redis + Upstash REST API)" -ForegroundColor Cyan
 
-# 校验数据库是否就绪
-$redisPing = (wsl -u root -e bash -lc "redis-cli ping 2>/dev/null").Trim()
-if ($redisPing -ne "PONG") {
-    Write-Warning "Redis 未就绪，请检查 WSL2 环境（可手动运行：wsl -u root -e bash -lc 'service redis-server start'）"
+# 定位 docker 命令（per-user 安装已在用户 PATH，这里显式兜底防止 PATH 未刷新）
+if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
+    $dockerBin = Join-Path $env:LOCALAPPDATA "Programs\DockerDesktop\resources\bin"
+    if (Test-Path (Join-Path $dockerBin "docker.exe")) {
+        $env:PATH = "$dockerBin;$env:PATH"
+    } else {
+        Write-Warning "未找到 docker，请先安装 Docker Desktop"
+        Start-Sleep -Seconds 5
+        exit 1
+    }
+}
+
+# 检查 Docker daemon 是否运行，未运行则拉起 Docker Desktop 并等待就绪
+$daemonReady = $false
+docker info *> $null
+if ($LASTEXITCODE -eq 0) {
+    $daemonReady = $true
 } else {
-    Write-Host "    PostgreSQL: 运行中" -ForegroundColor Green
-    Write-Host "    Redis: PONG" -ForegroundColor Green
+    Write-Host "    Docker Desktop 未运行，正在启动..." -ForegroundColor Yellow
+    $ddExe = Join-Path $env:LOCALAPPDATA "Programs\DockerDesktop\Docker Desktop.exe"
+    if (Test-Path $ddExe) { Start-Process $ddExe }
+    # 等待 daemon 就绪（最多 80 秒）
+    for ($i = 0; $i -lt 40; $i++) {
+        Start-Sleep -Seconds 2
+        docker info *> $null
+        if ($LASTEXITCODE -eq 0) { $daemonReady = $true; break }
+    }
+    if (-not $daemonReady) {
+        Write-Warning "Docker Desktop 启动超时，请手动启动后重试"
+        Start-Sleep -Seconds 5
+        exit 1
+    }
+}
+
+# 启动后端容器（幂等：已在运行则跳过；首次会拉取镜像）
+docker compose up -d db redis serverless-redis-http *> $null
+
+# 等待后端就绪：轮询 8079 端口（serverless-redis-http 就绪即说明 redis 链路正常）
+$backendReady = $false
+for ($i = 0; $i -lt 30; $i++) {
+    Start-Sleep -Seconds 1
+    $conn8079 = Get-NetTCPConnection -LocalPort 8079 -State Listen -ErrorAction SilentlyContinue
+    if ($conn8079) { $backendReady = $true; break }
+}
+
+if ($backendReady) {
+    Write-Host "    PostgreSQL (docker): 运行中" -ForegroundColor Green
+    Write-Host "    Redis (docker): 运行中" -ForegroundColor Green
+    Write-Host "    Upstash REST API (8079): 就绪" -ForegroundColor Green
+} else {
+    Write-Warning "后端服务启动异常，请运行 docker compose ps 检查"
 }
 
 Write-Host "==> [2/2] 启动 Web 服务端 (bun dev:web)" -ForegroundColor Cyan
