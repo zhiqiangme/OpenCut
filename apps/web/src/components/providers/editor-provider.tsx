@@ -8,6 +8,7 @@ import { useEditor } from "@/editor/use-editor";
 import { useKeybindingsListener } from "@/actions/use-keybindings";
 import { useKeybindingsStore } from "@/actions/keybindings-store";
 import { useTimelineStore } from "@/timeline/timeline-store";
+import { useT } from "@/i18n";
 import { useEditorActions } from "@/actions/use-editor-actions";
 import { loadFontAtlas } from "@/fonts/google-fonts";
 import {
@@ -21,6 +22,7 @@ interface EditorProviderProps {
 }
 
 export function EditorProvider({ projectId, children }: EditorProviderProps) {
+	const t = useT();
 	const activeProject = useEditor((e) => e.project.getActiveOrNull());
 	const router = useRouter();
 	const [isLoading, setIsLoading] = useState(true);
@@ -102,7 +104,7 @@ export function EditorProvider({ projectId, children }: EditorProviderProps) {
 			<div className="bg-background flex h-screen w-screen items-center justify-center">
 				<div className="flex flex-col items-center gap-4">
 					<Loader2 className="text-muted-foreground size-8 animate-spin" />
-					<p className="text-muted-foreground text-sm">Loading project...</p>
+					<p className="text-muted-foreground text-sm">{t("Loading project...")}</p>
 				</div>
 			</div>
 		);

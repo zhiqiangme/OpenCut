@@ -372,6 +372,7 @@ export const zh: Record<string, string> = {
 	"Add to timeline": "添加到时间轴",
 	"Remove from saved": "从已保存移除",
 	"Save sound": "保存音效",
+	"Loading project...": "正在加载项目...",
 
 	// 特效
 	"Intensity": "强度",
