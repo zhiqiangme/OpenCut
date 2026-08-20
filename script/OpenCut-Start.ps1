@@ -55,6 +55,15 @@ if (-not $bunExe -or -not (Test-Path $bunExe)) {
     throw "未找到 bun 可执行文件，请先安装：npm install -g bun"
 }
 
+# 关键：把 bun 所在目录注入 PATH
+# dev:web 实际执行 `turbo run dev`，而 package.json 的 packageManager 指定了 bun
+# turbo 需要通过 PATH 查找 bun 二进制，否则报 "Unable to find package manager binary"
+# 双击快捷方式的干净环境里没有 ~/.bun/bin，必须手动注入
+$bunDir = Split-Path -Parent $bunExe
+if ($env:PATH -notlike "*$bunDir*") {
+    $env:PATH = "$bunDir;$env:PATH"
+}
+
 # 日志写入 .workbuddy 目录，便于排查
 $logDir = Join-Path $root ".workbuddy"
 New-Item -ItemType Directory -Force -Path $logDir | Out-Null
