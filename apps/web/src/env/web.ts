@@ -17,7 +17,6 @@ const webEnvSchema = z.object({
 		"DATABASE_URL must be a postgres:// or postgresql:// URL",
 	),
 
-	BETTER_AUTH_SECRET: z.string(),
 	UPSTASH_REDIS_REST_URL: z.url(),
 	UPSTASH_REDIS_REST_TOKEN: z.string(),
 	MARBLE_WORKSPACE_KEY: z.string(),
