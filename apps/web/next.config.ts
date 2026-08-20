@@ -9,6 +9,8 @@ const nextConfig: NextConfig = {
 	reactStrictMode: true,
 	productionBrowserSourceMaps: true,
 	output: "standalone",
+	// 关闭 Next.js 16 内置的 DevTools 浮窗（左下角 N 图标 + 完整面板）
+	devIndicators: false,
 	images: {
 		remotePatterns: [
 			{
