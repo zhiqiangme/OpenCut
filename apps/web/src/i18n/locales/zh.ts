@@ -335,4 +335,14 @@ export const zh: Record<string, string> = {
 	"What's not allowed": "禁止事项",
 	"Symbol": "符号",
 	"Lockup": "组合标识",
+
+	// 编辑器剩余界面
+	"Send feedback": "发送反馈",
+	"It's empty here": "空空如也",
+	"Click an element on the timeline to edit its properties":
+		"点击时间轴上的元素以编辑其属性",
+	"Processing your files ({percent}%)": "正在处理文件（{percent}%）",
+	"Drag and drop videos, photos, and audio files here":
+		"拖放视频、图片和音频文件到这里",
+	"Fit": "适配",
 };

@@ -93,12 +93,13 @@ function useFeedback() {
 
 export function FeedbackPopover() {
 	const [open, setOpen] = useState(false);
+	const t = useT();
 
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
 			<PopoverTrigger asChild>
 				<Button variant="outline" className="h-8">
-					Send feedback
+					{t("Send feedback")}
 				</Button>
 			</PopoverTrigger>
 			<PopoverContent align="end" className="w-80 p-0">
