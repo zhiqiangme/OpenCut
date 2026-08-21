@@ -32,6 +32,32 @@ export function isKey(value: string): value is Key {
 	return KEY_SET.has(value);
 }
 
+// 合法的修饰键组合集合（与 ModifierKeys 类型保持一致）
+const MODIFIER_KEY_SET: ReadonlySet<string> = new Set([
+	"ctrl",
+	"alt",
+	"shift",
+	"ctrl+shift",
+	"alt+shift",
+	"ctrl+alt",
+	"ctrl+alt+shift",
+]);
+
+/**
+ * 判断字符串是否为合法的快捷键组合（ShortcutKey）：
+ * - 单个按键（如 "a"、"space"）
+ * - 修饰键 + 按键（如 "ctrl+z"、"ctrl+shift+a"）
+ */
+export function isShortcutKey(value: string): value is ShortcutKey {
+	if (isKey(value)) return true;
+	// 按键本身不含 "+"，故按最后一个 "+" 拆分修饰键与按键
+	const lastPlus = value.lastIndexOf("+");
+	if (lastPlus === -1) return false;
+	const modifiers = value.slice(0, lastPlus);
+	const key = value.slice(lastPlus + 1);
+	return MODIFIER_KEY_SET.has(modifiers) && isKey(key);
+}
+
 export type ModifierBasedShortcutKey = `${ModifierKeys}+${Key}`;
 // Singular keybindings (these will be disabled when an input-ish area has been focused)
 export type SingleCharacterShortcutKey = `${Key}`;

@@ -149,8 +149,9 @@
   /* Responsive breakpoints */
   --breakpoint-xs: 30rem;
 
-  /* Typography */
-  --font-sans: var(--font-inter), sans-serif;
+  /* Typography（桌面端自包含：不再依赖 next/font 的 Google Fonts 构建时下载） */
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   /* Font sizes */
   --text-xs: 0.72rem;

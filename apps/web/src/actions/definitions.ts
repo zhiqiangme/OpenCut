@@ -152,6 +152,25 @@ export const ACTIONS = {
 
 export type TAction = keyof typeof ACTIONS;
 
+// 需要「必填参数」的 action（其余 action 的参数均可省略）
+const ACTIONS_WITH_REQUIRED_ARGS: ReadonlySet<TAction> = new Set([
+	"remove-media-asset",
+	"remove-media-assets",
+]);
+
+/** 判断字符串是否为合法的 action 名 */
+export function isAction(value: string): value is TAction {
+	return Object.hasOwn(ACTIONS, value);
+}
+
+/** 判断字符串是否为「参数可省略」的 action（即无需必填参数） */
+export function isActionWithOptionalArgs(
+	value: string,
+): value is TActionWithOptionalArgs {
+	if (!isAction(value)) return false;
+	return !ACTIONS_WITH_REQUIRED_ARGS.has(value);
+}
+
 const ACTION_DEFAULT_SHORTCUTS = [
 	["toggle-play", ["space", "k"]],
 	["seek-forward", ["l"]],

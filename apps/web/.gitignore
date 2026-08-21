@@ -7,6 +7,9 @@
 
 .next/
 
+# 静态导出产物（output: export）
+out/
+
 .font-cache/
 
 next-env.d.ts

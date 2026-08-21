@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import {
 	ResizablePanelGroup,
 	ResizablePanel,
@@ -35,9 +35,10 @@ import {
 	getBookmarkPreviewOverlaySource,
 } from "@/timeline/bookmarks/index";
 
-export default function Editor() {
-	const params = useParams();
-	const projectId = params.project_id as string;
+export function EditorClient() {
+	const searchParams = useSearchParams();
+	// 桌面端静态导出下项目 ID 通过 query 传递（/editor?project=xxx），避免动态路由
+	const projectId = searchParams.get("project") ?? "";
 
 	return (
 		<MobileGate>

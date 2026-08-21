@@ -7,10 +7,7 @@ import { TooltipProvider } from "../components/ui/tooltip";
 import { baseMetaData } from "./metadata";
 import { BotIdClient } from "botid/client";
 import { webEnv } from "@/env/web";
-import { Inter } from "next/font/google";
 import { LanguageHydrator } from "@/i18n/language-hydrator";
-
-const siteFont = Inter({ subsets: ["latin"] });
 
 export const metadata = baseMetaData;
 
@@ -41,7 +38,7 @@ export default function RootLayout({
 					</>
 				)}
 			</head>
-			<body className={`${siteFont.className} font-sans antialiased`}>
+			<body className="font-sans antialiased">
 				<LanguageHydrator />
 				<ThemeProvider
 					attribute="class"
