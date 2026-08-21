@@ -99,8 +99,6 @@ export const zh: Record<string, string> = {
 		"很多功能还在开发中，我们正在努力完善！",
 	"If you're curious, check out our roadmap [here](https://opencut.app/roadmap)":
 		"如果你好奇，可以[在这里](https://opencut.app/roadmap)查看我们的路线图。",
-	"Join our [Discord]({discord}), chat with cool people and share feedback to help make OpenCut the best editor ever.":
-		"加入我们的 [Discord]({discord})，和有趣的人交流、分享反馈，一起把 OpenCut 打造成最好的编辑器。",
 	"Finish": "完成",
 
 	// 时间轴工具栏

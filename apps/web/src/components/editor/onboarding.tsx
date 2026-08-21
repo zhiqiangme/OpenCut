@@ -3,7 +3,6 @@
 import { ArrowRightIcon } from "lucide-react";
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { SOCIAL_LINKS } from "@/site/social";
 import { useLocalStorage } from "@/services/storage/use-local-storage";
 import { Button } from "../ui/button";
 import { Dialog, DialogBody, DialogContent, DialogTitle } from "../ui/dialog";
@@ -69,12 +68,6 @@ export function Onboarding() {
 					<div className="space-y-5">
 						<div className="space-y-3">
 							<Title title={getStepTitle()} />
-							<Description
-								description={t(
-									"Join our [Discord]({discord}), chat with cool people and share feedback to help make OpenCut the best editor ever.",
-									{ discord: SOCIAL_LINKS.discord },
-								)}
-							/>
 						</div>
 						<NextButton onClick={handleClose}>{t("Finish")}</NextButton>
 					</div>
